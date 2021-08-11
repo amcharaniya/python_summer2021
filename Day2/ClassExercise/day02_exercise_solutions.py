@@ -3,14 +3,20 @@
 class Senator():
   def __init__(self, name):
     self.name = name
-    self.bills_voted_on = [] ## list of Bill objects
+    self.bills_voted_on = []## list of Bill objects
 
-  def __str__(self): # Print method  
+  def __str__(self): #Print method
+      return "Hi my name is " + self.name
 
   def vote(self, bill, choice):
+      bill.votes[choice] = self.name
+      self.bills_voted_on.append(bill)
+      return self.name + " voted " + choice + " on " + bill.title
+      
     #update the bill object--add the senator's name to the the list of yes/no/abstain
     #update the senator object--add this bill to the bills this senator has voted on
     #print an informative message announcing the vote 
+    
 
 class Bill():
   def __init__(self, title):
@@ -19,9 +25,13 @@ class Bill():
     self.passed = None
 
   def __str__(self): # Print method  
+    return self.title + " has " + self.passed + " due to " + self.votes["no"]
 
   def result(self):
-    ## update and return the "passed" variable to indicate True/False if the bill passed
+    if len(self.votes["yes"])>len(self.votes["no"]):
+        self.passed = "passed"
+    else:
+        self.passed = "failed"
 
 
 ## should be able to do these things
