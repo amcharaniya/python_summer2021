@@ -6,10 +6,14 @@
 
 
 def binarify(num): 
-  """convert positive integer to base 2"""
   if num<=0: return '0'
   digits = []
-  return ''.join(digits)
+  while num > 0:
+    digits.append(num % 2)
+    num //=2
+  digits = digits[::-1]
+  string = "".join(str(i) for i in digits)
+ return string
 
 def int_to_base(num, base):
   """convert positive integer to a string in any base"""
