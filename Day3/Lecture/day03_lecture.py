@@ -256,6 +256,11 @@ print_integer(1.2)
 print_integer('a')
 print_integer(1)
 
+<<<<<<< HEAD
+=======
+# more on except and raise: https://stackoverflow.com/questions/56942284/what-is-the-difference-between-raise-and-except
+
+>>>>>>> upstream/main
 
 #---------- break, continue, and else ----------#
 
