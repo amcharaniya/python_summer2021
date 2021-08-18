@@ -15,7 +15,7 @@ he became president on 2021-01-20:
 – Citation/footnote (if one exists)
 • Remember, be polite and sleep after accessing each individual document page
 
-os.chdir("/Users/amaancharaniya/Documents/python_summer2021/Day4")
+os.chdir("/Users/amaancharaniya/Documents/python_summer2021/HW")
 
 from bs4 import BeautifulSoup
 import lxml
@@ -32,7 +32,7 @@ with open("BidenSpeeches.csv", "w") as f:
     soup = BeautifulSoup(web_page.read(), features="lxml") 
     speech = {}
     s = soup.find_all(class_="field-title")
-    for i in s[0:16][17:61]:
+    for i in s[0:5]:
         webpage = "https://www.presidency.ucsb.edu/" +  i.find("a")["href"]
         new_page = urllib.request.urlopen(webpage)
         new_soup = BeautifulSoup(new_page.read(), features = "lxml")
