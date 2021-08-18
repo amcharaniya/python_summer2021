@@ -5,6 +5,7 @@ Created on Tue Aug 17 16:01:17 2021
 
 @author: amaancharaniya
 """
+These are my updates
 
 • Go to: https://www.presidency.ucsb.edu/documents/app-categories/presidential/spoken-addressesand-remarks
 • Create a csv file with the following information for each spoken address given by President Biden since
@@ -27,11 +28,14 @@ import os, time, random
 with open("BidenSpeeches.csv", "w") as f:
     w = csv.DictWriter(f, fieldnames= ("Date", "Title", "Full Text", "Footnote") )
     w.writeheader()
+    speech = {}
     web_address = 'https://www.presidency.ucsb.edu/documents/app-categories/presidential/spoken-addresses-and-remarks?items_per_page=60'
     web_page = urllib.request.urlopen(web_address)
     soup = BeautifulSoup(web_page.read(), features="lxml") 
-    speech = {}
     s = soup.find_all(class_="field-title")
+    for i in s :
+        website = 'https://www.presidency.ucsb.edu/documents/app-categories/presidential/spoken-addresses-and-remarks?items_per_page=60'
+        print(i.find_all(class_  = "pagination"))
     for i in s[0:5]:
         webpage = "https://www.presidency.ucsb.edu/" +  i.find("a")["href"]
         new_page = urllib.request.urlopen(webpage)
