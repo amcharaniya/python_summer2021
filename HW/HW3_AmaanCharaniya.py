@@ -24,7 +24,7 @@ wustl = api.get_user('@WUSTLPoliSci')
 
 follow_dic = {} #creating a dictionary to store the handles and follower counts of Wustl's followers
 tweet_dic = {} #creating a dictionary to store the handles and tweet counts of Wustl's followers
-for follower_id in wustl.followers_ids()[5:10]:
+for follower_id in wustl.followers_ids():
         user = api.get_user(follower_id)
         handle = user.screen_name
         tweets = user.statuses_count
@@ -36,25 +36,30 @@ max_follow = max(follow_dic, key = follow_dic.get) #getting the maximum follower
 max_tweets = max(tweet_dic, key = tweet_dic.get) #getting the maximum tweets or most active
 
 print("Q1: \nOf WUSTLPoliSci's followers, the account who is most popular is {}.".format(max_follow)) #printing answer   
+#Q1: Of WUSTLPoliSci's followers, the account who is most popular is BrendanNyhan.
 print("Q2: \nOf WUSTLPoliSci's followers, the account who is most active is {}.".format(max_tweets)) #printing answer  
-
+#Q2: Of WUSTLPoliSci's followers, the account who is most active is TheNjoroge.
 
 friend_dic = {} #creating a dictionary to store the handles and tweets of wustl's friends
 friend_tweet_dic = {} #creating a dictionary to store the handles and followers of wustl's friends
 # Get followers geo location
-for friend_id in api.friends_ids('@WUSTLPoliSci')[0:5]:
+for friend_id in api.friends_ids('@WUSTLPoliSci'):
+    try:
         user = api.get_user(friend_id)
         handle = api.get_user(friend_id).screen_name
         count = user.followers_count
         tweet = user.statuses_count
         friend_tweet_dic[handle] = tweet
         friend_dic[handle] = count      
+    except:
+    	time.sleep(15*60)
 max_friend = max(friend_dic, key = friend_dic.get) #getting the maximum tweets or most active
 max_active = max(friend_tweet_dic, key = friend_tweet_dic.get) #getting the maximum follwoers or most popular
 
 print("Q3: \nOf WUSTLPoliSci's friends, the account who is most popular is {}.".format(max_friend)) #printing answer
+#Q3: Of WUSTLPoliSci's friends, the account who is most popular is BarackObama.
 print("Q4: \nOf WUSTLPoliSci's friends, the account who is the most active is {}.".format(max_active)) #printing answer
-
+#Q4: Of WUSTLPoliSci's friends, the account who is the most active is nytimes.
 
 
         
