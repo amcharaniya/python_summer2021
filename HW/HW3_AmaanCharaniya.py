@@ -72,54 +72,61 @@ followeroffollower_tweet_dic3 = {} #creating dictionary to store celebrity handl
 
 #Using 3 if/else statements to store all followers in appropriate category
 for follower_id in api.followers_ids('@WUSTLPoliSci'):
-    if api.get_user(follower_id).followers_count <= 100:
-        user = api.get_user(follower_id)
-        handle = api.get_user(follower_id).screen_name
-        tweet = user.statuses_count
-        followeroffollower_tweet_dic1[handle] = tweet
-        followers += api.followers_ids(follower_id)
-    else:
-        pass
-    if 100 < api.get_user(follower_id).followers_count <= 1000:
-        user = api.get_user(follower_id)
-        handle = api.get_user(follower_id).screen_name
-        tweet = user.statuses_count
-        followeroffollower_tweet_dic2[handle] = tweet
-        followers += api.followers_ids(follower_id)
-    else:
-        pass
-    if api.get_user(follower_id).followers_count > 1000:
-        user = api.get_user(follower_id)
-        handle = api.get_user(follower_id).screen_name
-        tweet = user.statuses_count
-        followeroffollower_tweet_dic3[handle] = tweet
-        followers += api.followers_ids(follower_id)
-    else:
-        pass
-
+    try:
+        if api.get_user(follower_id).followers_count <= 100:
+            user = api.get_user(follower_id)
+            handle = api.get_user(follower_id).screen_name
+            tweet = user.statuses_count
+            followeroffollower_tweet_dic1[handle] = tweet
+            followers += api.followers_ids(follower_id)
+        else:
+            pass
+        if 100 < api.get_user(follower_id).followers_count <= 1000:
+            user = api.get_user(follower_id)
+            handle = api.get_user(follower_id).screen_name
+            tweet = user.statuses_count
+            followeroffollower_tweet_dic2[handle] = tweet
+            followers += api.followers_ids(follower_id)
+        else:
+            pass
+        if api.get_user(follower_id).followers_count > 1000:
+            user = api.get_user(follower_id)
+            handle = api.get_user(follower_id).screen_name
+            tweet = user.statuses_count
+            followeroffollower_tweet_dic3[handle] = tweet
+            followers += api.followers_ids(follower_id)
+        else:
+            pass
+    except:
+    	time.sleep(15*60)
 #Using same 3 statements to put followers of followers in appropriate category 
-for follower_id in followers[0:3]:
-    if api.get_user(follower_id).followers_count <= 100:
-        user = api.get_user(follower_id)
-        handle = api.get_user(follower_id).screen_name
-        tweet = user.statuses_count
-        followeroffollower_tweet_dic1[handle] = tweet
-    else:
-        pass
-    if 100 < api.get_user(follower_id).followers_count <= 1000:
-        user = api.get_user(follower_id)
-        handle = api.get_user(follower_id).screen_name
-        tweet = user.statuses_count
-        followeroffollower_tweet_dic2[handle] = tweet
-    else: 
-        pass
-    if api.get_user(follower_id).followers_count > 1000:
-        user = api.get_user(follower_id)
-        handle = api.get_user(follower_id).screen_name
-        tweet = user.statuses_count
-        followeroffollower_tweet_dic3[handle] = tweet
-    else: 
-        pass
+for follower_id in followers:
+    try:
+        if api.get_user(follower_id).followers_count <= 100:
+            user = api.get_user(follower_id)
+            handle = api.get_user(follower_id).screen_name
+            tweet = user.statuses_count
+            followeroffollower_tweet_dic1[handle] = tweet
+        else:
+            pass
+        if 100 < api.get_user(follower_id).followers_count <= 1000:
+            user = api.get_user(follower_id)
+            handle = api.get_user(follower_id).screen_name
+            tweet = user.statuses_count
+            followeroffollower_tweet_dic2[handle] = tweet
+        else: 
+            pass
+        if api.get_user(follower_id).followers_count > 1000:
+            user = api.get_user(follower_id)
+            handle = api.get_user(follower_id).screen_name
+            tweet = user.statuses_count
+            followeroffollower_tweet_dic3[handle] = tweet
+        else: 
+            pass
+    except:
+    	time.sleep(15*60)
+        
+
 
 #Maximizing activity in each category
 maxfollow_tweet1 = max(followeroffollower_tweet_dic1, key = followeroffollower_tweet_dic1.get)
