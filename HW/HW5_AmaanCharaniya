@@ -1,0 +1,69 @@
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
+"""
+Created on Sun Aug 29 16:21:12 2021
+
+@author: amaancharaniya
+"""
+
+class Node:
+    def __init__(self, _value=None, _next=None):
+        self.value = _value
+        self.next = _next 
+    def __str__(self):
+        return str(self.value)
+
+class LinkedList():
+    def __init__(self, first = None):
+        self.first = first # First node	
+     
+    def addNode(self,new_value):
+       newNode = Node(new_value) 
+       if self.first is None:
+           self.first = newNode
+           return
+       last = self.first
+       while (last.next):
+           last = last.next
+       last.next = newNode 
+
+    def removeNode(self, node_to_remove):
+        firstvalue = self.first
+        if (firstvalue is not None):
+            if(firstvalue.value == node_to_remove):
+                self.first = firstvalue.next
+                firstvalue = None
+                return
+        while (firstvalue is not None):
+            if firstvalue.value == node_to_remove:
+                break
+            previous = firstvalue
+            firstvalue = firstvalue.next
+        if(firstvalue == None):
+            return
+        previous.next = firstvalue.next
+        firstvalue = None
+    
+    def AddNodeAfter(self, new_value, after_node):
+        if after_node is None:
+            print("No Node here")
+            return
+        newNode = Node(new_value)
+        newNode.next = after_node.next
+        after_node.next = newNode
+
+
+    def listprint(self):
+        printvalue = self.first
+        while (printvalue):
+            print(printvalue.value),
+            printvalue = printvalue.next
+
+         
+list = LinkedList()
+list.addNode(8)
+list.addNode(3)
+list.addNode(4)
+list.AddNodeAfter(3, 9)
+list.removeNode(4)
+list.listprint()        
