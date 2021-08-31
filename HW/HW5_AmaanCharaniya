@@ -17,6 +17,7 @@ class LinkedList():
     def __init__(self, first = None):
         self.first = first # First node	
      
+    #Checks if there is a definition of the first value and if not it sets the input as first.
     def addNode(self,new_value):
        newNode = Node(new_value) 
        if self.first is None:
@@ -44,26 +45,38 @@ class LinkedList():
         previous.next = firstvalue.next
         firstvalue = None
     
-    def AddNodeAfter(self, new_value, after_node):
+    #I tried to debug this. Code still breaks. Workaround is to include the location of the "after_node" in the command line when enterting.
+    def AddNodeAfter(self, after_node, new_value):
         if after_node is None:
             print("No Node here")
             return
         newNode = Node(new_value)
         newNode.next = after_node.next
         after_node.next = newNode
-
-
+    
+    def reverse(self):
+        prev = None
+        current = self.first
+        while(current is not None):
+            next = current.next
+            current.next = prev
+            prev = current
+            current = next
+        self.first = prev
+        
+    #Nifty function that prins the next value in the linked list to print the full list. 
     def listprint(self):
         printvalue = self.first
         while (printvalue):
             print(printvalue.value),
             printvalue = printvalue.next
-
-         
+      
 list = LinkedList()
 list.addNode(8)
 list.addNode(3)
-list.addNode(4)
-list.AddNodeAfter(3, 9)
-list.removeNode(4)
+list.addNode(5)
+list.AddNodeAfter(list.first.next,5)
+list.removeNode(10)
+list.removeNode(5)
 list.listprint()        
+list.reverse()
